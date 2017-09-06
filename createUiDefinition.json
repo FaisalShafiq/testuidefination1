@@ -220,63 +220,54 @@
               "name": "vidizmoLMSPackage",
               "type": "Microsoft.Common.DropDown",
               "label": "Select Vidizmo License",
+              "defaultValue": "Virtual Academy - 1 Portals - 100 Users",
               "toolTip": "Select Vidizmo Application License for your deployment.",
               "constraints": {
                 "required": true,
                 "allowedValues": [
                   {
-                    "label": "Media Tube Standard - 1 Channel - 100 Users",
-                    "value": "VDZMO-AZR-MTUBE-STD-100"
+                    "label": "Virtual Academy - 1 Portals - 100 Users",
+                    "value": "vidizmo-virtual-academy-100"
                   },
                   {
-                    "label": "Media LMS - 1 Channel - 100 Users",
-                    "value": "VDZMO-AZR-MLMS-100"
-
+                    "label": "Virtual Academy - 1 Portals - 250 Users",
+                    "value": "vidizmo-virtual-academy-250"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 1K Users",
-                    "value": "VDZMO-AZR-ENT-STD-1000"
-
+                    "label": "Virtual Academy - 1 Portals - 500 Users",
+                    "value": "vidizmo-virtual-academy-500"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 2.5K Users",
-                    "value": "VDZMO-AZR-ENT-STD-2500"
-
+                    "label": "Virtual Academy - 1 Portals - 750 Users",
+                    "value": "vidizmo-virtual-academy-750"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 5K Users",
-                    "value": "VDZMO-AZR-ENT-STD-5000"
-
+                    "label": "Virtual Academy - 4 Portals - 1K Users",
+                    "value": "vidizmo-virtual-academy-1k"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 10K Users",
-                    "value": "VDZMO-AZR-ENT-STD-10K"
-
+                    "label": "Virtual Academy - 4 Portals - 2.5K Users",
+                    "value": "vidizmo-virtual-academy-2.5k"
                   },
                   {
-                    "label": "EnterpriseTube Standard - 4 Channels - 25K Users",
-                    "value": "VDZMO-AZR-ENT-STD-25K"
+                    "label": "Virtual Academy - 4 Portals - 5K Users",
+                    "value": "vidizmo-virtual-academy-5k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 1K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-1000"
+                    "label": "Virtual Academy - 4 Portals - 10K Users",
+                    "value": "vidizmo-virtual-academy-10k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 2.5K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-2500"
+                    "label": "Virtual Academy - 4 Portals - 25K Users",
+                    "value": "vidizmo-virtual-academy-25k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 5K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-5000"
+                    "label": "Virtual Academy - 4 Portals - 50K Users",
+                    "value": "vidizmo-virtual-academy-50k"
                   },
                   {
-                    "label": "EnterpriseTube Premium - 4 Channels - 10K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-10K"
-
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Channels - 25K Users",
-                    "value": "VDZMO-AZR-ENT-PRM-25K"
+                    "label": "Virtual Academy - 4 Portals - 100k Users",
+                    "value": "vidizmo-virtual-academy-100k"
                   }
                 ]
               }
@@ -295,7 +286,7 @@
             },
             {
               "name": "vidizmoApplicationPassword",
-              "type": "Microsoft.Compute.CredentialsCombo",
+              "type": "Microsoft.Compute.PasswordBox",
               "label": {
                 "password": "VIDIZMO Application User Password",
                 "confirmPassword": "Confirm password"
@@ -303,7 +294,9 @@
               "toolTip": {
                 "password": "Provide Vidizmo Application User Password."
               },
-              "osPlatform": "Windows"
+              "constraints": {
+                "required": true
+              }
             },
             {
               "name": "firstName",
@@ -356,8 +349,8 @@
             {
               "name": "phone",
               "type": "Microsoft.Common.TextBox",
-              "label": "Contact Number.",
-              "toolTip": "Provide your contact number.",
+              "label": "Phone Number",
+              "toolTip": "Provide your phone number.",
               "defaultValue": "",
               "constraints": {
                 "required": true,
@@ -374,16 +367,16 @@
                 "required": true,
                 "allowedValues": [
                   {
-                    "label": "Sales Team to Contact me",
+                    "label": "VIDIZMO Sales Team to Contact me",
                     "value": "Sales_Team_to_Contact_me"
                   },
                   {
-                    "label": "Support Team to Contact me",
+                    "label": "VIDIZMO Support Team to Contact me",
                     "value": "Support_Team_to_Contact_me"
                   },
                   {
-                    "label": "Sales & Support Team to Contact me",
-                    "value": "Sales_&_Support_Team_to_Contact_me"
+                    "label": "VIDIZMO Sales & Support Team to Contact me",
+                    "value": "Sales_and_Support_Team_to_Contact_me"
                   }
                 ]
               }
@@ -395,6 +388,7 @@
               "toolTip": "Tell us, where did you hear for us?",
               "defaultValue": "",
               "constraints": {
+                "required": true,
                 "regex": "^[a-z0-9A-Z\\s]{1,100}$",
                 "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-100 characters long."
               }
