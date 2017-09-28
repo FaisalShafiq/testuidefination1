@@ -1,104 +1,105 @@
 {
-    "handler": "Microsoft.Compute.MultiVm",
-    "version": "0.0.1-preview",
-    "parameters": {
-      "basics": [
-        {
-          "name": "adminUsername",
-          "type": "Microsoft.Compute.UserNameTextBox",
-          "label": "Virtual Machine Administrator Username",
-          "toolTip": "Admin username for the virtual machines.",
-          "osPlatform": "Windows"
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json",
+  "handler": "Microsoft.Compute.MultiVm",
+  "version": "0.1.2-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "adminUsername",
+        "type": "Microsoft.Compute.UserNameTextBox",
+        "label": "Virtual Machine Administrator Username",
+        "toolTip": "Admin username for the virtual machines.",
+        "osPlatform": "Windows"
+      },
+      {
+        "name": "adminPassword",
+        "type": "Microsoft.Compute.CredentialsCombo",
+        "label": {
+          "password": "Administrator Password",
+          "confirmPassword": "Confirm password"
         },
-        {
-          "name": "adminPassword",
-          "type": "Microsoft.Compute.CredentialsCombo",
-          "label": {
-            "password": "Administrator Password",
-            "confirmPassword": "Confirm password"
-          },
-          "toolTip": {
-            "password": "Admin password for the virtual machines."
-          },
-          "osPlatform": "Windows"
-        }
-      ],
-      "steps": [
-        {
-          "name": "infrastructureConfig",
-          "label": "VIDIZMO Infrastructure settings",
-          "subLabel": {
-            "preValidation": "Configure VIDIZMO infrastructure settings",
-            "postValidation": "Done"
-          },
-          "bladeTitle": "VIDIZMO Infrastructure settings",
-          "elements": [
-            {
-              "name": "storageAccount",
-              "type": "Microsoft.Storage.StorageAccountSelector",
-              "label": "Virtual Machine Storage Account",
-              "defaultValue": {
-                "name": "",
-                "type": "Premium_LRS"
-              },
-              "constraints": {
-                "allowedTypes": [
-                  "Standard_LRS",
-                  "Standard_GRS",
-                  "Premium_LRS"
-                ]
-              }
+        "toolTip": {
+          "password": "Admin password for the virtual machines."
+        },
+        "osPlatform": "Windows"
+      }
+    ],
+    "steps": [
+      {
+        "name": "infrastructureConfig",
+        "label": "VIDIZMO Infrastructure settings",
+        "subLabel": {
+          "preValidation": "Configure VIDIZMO infrastructure settings",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "VIDIZMO Infrastructure settings",
+        "elements": [
+          {
+            "name": "storageAccount",
+            "type": "Microsoft.Storage.StorageAccountSelector",
+            "label": "Virtual Machine Storage Account",
+            "defaultValue": {
+              "name": "",
+              "type": "Premium_LRS"
             },
-            {
-                  "name": "vNetName",
-                  "type": "Microsoft.Network.VirtualNetworkCombo",
-                  "label": {
-                    "virtualNetwork": "Virtual Network",
-                    "subnets": "Subnets"
-                  },
-                  "toolTip": {
-                    "virtualNetwork": "",
-                    "subnets": ""
-                  },
-                  "defaultValue": {
-                    "name": "vnet01",
-                    "addressPrefixSize": "/16"
-                  },
-                  "constraints": {
-                    "minAddressPrefixSize": "/16"
-                  },
-                  "options": {
-                    "hideExisting": false
-                  },
-                  "subnets": {
-                    "subnet1": {
-                      "label": "Subnet Name",
-                      "defaultValue": {
-                        "name": "subnet-1",
-                        "addressPrefixSize": "/24"
-                      },
-                      "constraints": {
-                        "minAddressPrefixSize": "/24",
-                        "minAddressCount": 12,
-                        "requireContiguousAddresses": true
-                      }
-                    }
-                  },
-                  "visible": true
+            "constraints": {
+              "allowedTypes": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Premium_LRS"
+              ]
+            }
+          },
+          {
+            "name": "vNetName",
+            "type": "Microsoft.Network.VirtualNetworkCombo",
+            "label": {
+              "virtualNetwork": "Virtual Network",
+              "subnets": "Subnets"
+            },
+            "toolTip": {
+              "virtualNetwork": "",
+              "subnets": ""
+            },
+            "defaultValue": {
+              "name": "vnet01",
+              "addressPrefixSize": "/16"
+            },
+            "constraints": {
+              "minAddressPrefixSize": "/16"
+            },
+            "options": {
+              "hideExisting": false
+            },
+            "subnets": {
+              "subnet1": {
+                "label": "Subnet Name",
+                "defaultValue": {
+                  "name": "subnet-1",
+                  "addressPrefixSize": "/24"
                 },
-              {
-              "name": "vMName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Virtual Machine Name",
-              "toolTip": "Unique Name for the Virtual Machine.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,15}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+                "constraints": {
+                  "minAddressPrefixSize": "/24",
+                  "minAddressCount": 12,
+                  "requireContiguousAddresses": true
+                }
               }
             },
-            {
+            "visible": true
+          },
+          {
+            "name": "vMName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Virtual Machine Name",
+            "toolTip": "Unique Name for the Virtual Machine.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z]{1,15}$",
+              "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
+            }
+          },
+          {
             "name": "vMPublicIP",
             "type": "Microsoft.Network.PublicIpAddressCombo",
             "label": {
@@ -107,391 +108,391 @@
             },
             "toolTip": {
               "domainNameLabel": "DNS label for the VIDIZMO Server's public IP address, which hosts the VIDIZMO application."
-            },  
+            },
             "options": {
               "hideNone": true,
               "hideDomainNameLabel": false
             },
             "constraints": {
               "required": {
-                 "domainNameLabel": true
+                "domainNameLabel": true
               }
             }
           },
-            {
-              "name": "vMSize",
-              "type": "Microsoft.Compute.SizeSelector",
-              "label": "Virtual Machine Size",
-              "toolTip": "Size of the VIDIZMO VM instance to be created. DS series VMs only supported in premium storage type.",
-              "recommendedSizes": [
+          {
+            "name": "vMSize",
+            "type": "Microsoft.Compute.SizeSelector",
+            "label": "Virtual Machine Size",
+            "toolTip": "Size of the VIDIZMO VM instance to be created. DS series VMs only supported in premium storage type.",
+            "recommendedSizes": [
+              "Standard_DS2_v2",
+              "Standard_DS3_v2",
+              "Standard_DS4_v2"
+            ],
+            "constraints": {
+              "allowedSizes": [
+                "Standard_A3",
+                "Standard_A4",
+                "Standard_A6",
+                "Standard_A7",
+                "Standard_A8",
+                "Standard_A9",
+                "Standard_A10",
+                "Standard_A11",
+                "Standard_D2",
+                "Standard_D3",
+                "Standard_D4",
+                "Standard_D12",
+                "Standard_D13",
+                "Standard_D14",
+                "Standard_D2_v2",
+                "Standard_D3_v2",
+                "Standard_D4_v2",
+                "Standard_D5_v2",
+                "Standard_D12_v2",
+                "Standard_D13_v2",
+                "Standard_D14_v2",
+                "Standard_D15_v2",
+                "Standard_DS2",
+                "Standard_DS3",
+                "Standard_DS4",
+                "Standard_DS12",
+                "Standard_DS13",
+                "Standard_DS14",
                 "Standard_DS2_v2",
                 "Standard_DS3_v2",
-                "Standard_DS4_v2"
-              ],
-              "constraints": {
-                "allowedSizes": [
-                  "Standard_A3",
-                  "Standard_A4",
-                  "Standard_A6",
-                  "Standard_A7",
-                  "Standard_A8",
-                  "Standard_A9",
-                  "Standard_A10",
-                  "Standard_A11",
-                  "Standard_D2",
-                  "Standard_D3",
-                  "Standard_D4",
-                  "Standard_D12",
-                  "Standard_D13",
-                  "Standard_D14",
-                  "Standard_D2_v2",
-                  "Standard_D3_v2",
-                  "Standard_D4_v2",
-                  "Standard_D5_v2",
-                  "Standard_D12_v2",
-                  "Standard_D13_v2",
-                  "Standard_D14_v2",
-                  "Standard_D15_v2",
-                  "Standard_DS2",
-                  "Standard_DS3",
-                  "Standard_DS4",
-                  "Standard_DS12",
-                  "Standard_DS13",
-                  "Standard_DS14",
-                  "Standard_DS2_v2",
-                  "Standard_DS3_v2",
-                  "Standard_DS4_v2",
-                  "Standard_DS5_v2",
-                  "Standard_DS12_v2",
-                  "Standard_DS13_v2",
-                  "Standard_DS14_v2",
-                  "Standard_DS15_v2",
-                  "Standard_F1",
-                  "Standard_F2",
-                  "Standard_F3",
-                  "Standard_F4",
-                  "Standard_F8",
-                  "Standard_F16",
-                  "Standard_F1s",
-                  "Standard_F2s",
-                  "Standard_F3s",
-                  "Standard_F4s",
-                  "Standard_F8s",
-                  "Standard_F16s",
-                  "Standard_G2",
-                  "Standard_G3",
-                  "Standard_G4",
-                  "Standard_G5",
-                  "Standard_GS2",
-                  "Standard_GS3",
-                  "Standard_GS4",
-                  "Standard_GS5"
-                ]
-              },
-              "osPlatform": "Windows"
+                "Standard_DS4_v2",
+                "Standard_DS5_v2",
+                "Standard_DS12_v2",
+                "Standard_DS13_v2",
+                "Standard_DS14_v2",
+                "Standard_DS15_v2",
+                "Standard_F1",
+                "Standard_F2",
+                "Standard_F3",
+                "Standard_F4",
+                "Standard_F8",
+                "Standard_F16",
+                "Standard_F1s",
+                "Standard_F2s",
+                "Standard_F3s",
+                "Standard_F4s",
+                "Standard_F8s",
+                "Standard_F16s",
+                "Standard_G2",
+                "Standard_G3",
+                "Standard_G4",
+                "Standard_G5",
+                "Standard_GS2",
+                "Standard_GS3",
+                "Standard_GS4",
+                "Standard_GS5"
+              ]
             },
-            {
-              "name": "mediaServiceName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Media Service Name",
-              "toolTip": "Unique name for the Media Service.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,30}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-30 characters long."
-              }
-            },
-            {
-              "name": "mediaStorageName",
-              "type": "Microsoft.Storage.StorageAccountSelector",
-              "label": "Media Service Storage Account",
-              "toolTip": "Unique name for the Media Storage Account.",
-              "defaultValue": {
-                "name": "",
-                "type": "Standard_LRS"
-              },
-              "constraints": {
-                "allowedTypes": [
-                  "Standard_LRS",
-                  "Standard_GRS",
-                  "Standard_RAGRS"
-                ]
-              },
-              "options": {
-                "hideExisting": false
-              },
-              "visible": true
-            }
-
-           
-          ]
-        },
-        {
-          "name": "vidizmoApplicationConfig",
-          "label": "VIDIZMO Application settings",
-          "subLabel": {
-            "preValidation": "Configure VIDIZMO Application settings",
-            "postValidation": "Done"
+            "osPlatform": "Windows"
           },
-          "bladeTitle": "VIDIZMO Application settings",
-          "elements": [
-            {
-              "name": "vidizmoLMSPackage",
-              "type": "Microsoft.Common.DropDown",
-              "label": "Select Vidizmo License",
-              "defaultValue": "EnterpriseTube Standard - 1 Portals - 100 Users",
-              "toolTip": "Select Vidizmo Application License for your deployment.",
-              "constraints": {
-                "required": true,
-                "allowedValues": [
-                  {
-                    "label": "EnterpriseTube Standard - 1 Portals - 100 Users",
-                    "value": "vidizmo-enterprise-standard-100"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 1 Portals - 250 Users",
-                    "value": "vidizmo-enterprise-standard-250"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 1 Portals - 500 Users",
-                    "value": "vidizmo-enterprise-standard-500"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 1 Portals - 750 Users",
-                    "value": "vidizmo-enterprise-standard-750"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 4 Portals - 1K Users",
-                    "value": "vidizmo-enterprise-standard-1k"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 4 Portals - 2.5K Users",
-                    "value": "vidizmo-enterprise-standard-2.5k"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 4 Portals - 5K Users",
-                    "value": "vidizmo-enterprise-standard-5k"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 4 Portals - 10K Users",
-                    "value": "vidizmo-enterprise-standard-10k"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 4 Portals - 25K Users",
-                    "value": "vidizmo-enterprise-standard-25k"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 4 Portals - 50K Users",
-                    "value": "vidizmo-enterprise-standard-50k"
-                  },
-                  {
-                    "label": "EnterpriseTube Standard - 4 Portals - 100K Users",
-                    "value": "vidizmo-enterprise-standard-100k"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 1 Portals - 100 Users",
-                    "value": "vidizmo-enterprise-premium-100"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 1 Portals - 250 Users",
-                    "value": "vidizmo-enterprise-premium-250"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 1 Portals - 500 Users",
-                    "value": "vidizmo-enterprise-premium-500"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 1 Portals - 750 Users",
-                    "value": "vidizmo-enterprise-premium-750"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Portals - 1K Users",
-                    "value": "vidizmo-enterprise-premium-1k"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Portals - 2.5K Users",
-                    "value": "vidizmo-enterprise-premium-2.5k"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Portals - 5K Users",
-                    "value": "vidizmo-enterprise-premium-5k"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Portals - 10K Users",
-                    "value": "vidizmo-enterprise-premium-10k"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Portals - 25K Users",
-                    "value": "vidizmo-enterprise-premium-25k"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Portals - 50K Users",
-                    "value": "vidizmo-enterprise-premium-50k"
-                  },
-                  {
-                    "label": "EnterpriseTube Premium - 4 Portals - 100K Users",
-                    "value": "vidizmo-enterprise-premium-100k"
-                  }
-                ]
-              }
-            },
-            {
-              "name": "emailAddress",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Your Email Address",
-              "toolTip": "Provide your email address",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,15})$",
-                "validationMessage": "Must be a valid email address."
-              }
-            },
-            {
-                "name": "vidizmoApplicationPassword",
-                "type": "Microsoft.Compute.CredentialsCombo",
-                "label": {
-                  "password": "VIDIZMO Application User Password",
-                  "confirmPassword": "Confirm password"
-                },
-                "toolTip": {
-                  "password": "Provide Vidizmo Application User Password."
-                },
-              "constraints": {
-                "required": true
-              },
-                "options": {
-                  "hideConfirmation": false
-                },
-                "osPlatform": "Windows"
-            },
-            {
-              "name": "firstName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Your First Name",
-              "toolTip": "Provide your first name.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z\\s]{1,15}$",
-                "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-15 characters long."
-              }
-            },
-            {
-              "name": "lastName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Your Last Name",
-              "toolTip": "Provide your last name.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z\\s]{1,15}$",
-                "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-15 characters long."
-              }
-            },
-            {
-              "name": "organizationName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Organization Name",
-              "toolTip": "Provide your organization name.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z\\s]{1,100}$",
-                "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-100 characters long."
-              }
-            },
-            {
-              "name": "webSite",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Website URL",
-              "toolTip": "Provide your organization website URL.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$",
-                "validationMessage": "Only provide URLs like 'http://yourwebsite.com'."
-              }
-            },
-            {
-              "name": "phone",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Phone Number",
-              "toolTip": "Provide your phone number.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[0-9]{1,15}$",
-                "validationMessage": "Only numbers are allowed, and the value must be 1-15 characters long."
-              }
-            },
-            {
-              "name": "iWouldLikeTo",
-              "type": "Microsoft.Common.DropDown",
-              "label": "I would like to",
-              "toolTip": "Select option listed in Dropdown",
-              "defaultValue": "VIDIZMO Sales Team to Contact me",
-              "constraints": {
-                "required": true,
-                "allowedValues": [
-                  {
-                    "label": "VIDIZMO Sales Team to Contact me",
-                    "value": "Sales_Team_to_Contact_me"
-                  },
-                  {
-                    "label": "VIDIZMO Support Team to Contact me",
-                    "value": "Support_Team_to_Contact_me"
-                  },
-                  {
-                    "label": "VIDIZMO Sales & Support Team to Contact me",
-                    "value": "Sales_and_Support_Team_to_Contact_me"
-                  }
-                ]
-              }
-            },
-            {
-              "name": "whereDidYouHearForUs",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Where did you hear about us?",
-              "toolTip": "Tell us, where did you hear about us?",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z\\s]{1,100}$",
-                "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-100 characters long."
-              }
+          {
+            "name": "mediaServiceName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Media Service Name",
+            "toolTip": "Unique name for the Media Service.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z]{1,30}$",
+              "validationMessage": "Only letters and numbers are allowed, and the value must be 1-30 characters long."
             }
-          ]
-        }
-      ],
-      "outputs": {
-        "adminUsername": "[basics('adminUsername')]",
-        "adminPassword": "[basics('adminPassword').password]",
-        "location": "[basics('location')]",
-        "resourceGroup": "[basics('resourcegroup')]",
-        "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
-        "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
-        "vNetName": "[steps('infrastructureConfig').vNetName.name]",
-        "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName.addressPrefixes]",
-        "subnetName": "[steps('infrastructureConfig').vNetName.subnets.subnet1.name]",
-        "subnetPrefix": "[steps('infrastructureConfig').vNetName.subnets.subnet1.addressPrefix]",
-        "vMName": "[steps('infrastructureConfig').vMName]",
-        "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
-        "vMDNSName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
-        "vMSize": "[steps('infrastructureConfig').vMSize]",
-        "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
-        "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
-        "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
-        "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
-        "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
-        "firstName": "[steps('vidizmoApplicationConfig').firstName]",
-        "lastName": "[steps('vidizmoApplicationConfig').lastName]",
-        "organizationName": "[steps('vidizmoApplicationConfig').organizationName]",
-        "webSite": "[steps('vidizmoApplicationConfig').webSite]",
-        "phone": "[steps('vidizmoApplicationConfig').phone]",
-        "iWouldLikeTo": "[steps('vidizmoApplicationConfig').iWouldLikeTo]",
-        "whereDidYouHearForUs": "[steps('vidizmoApplicationConfig').whereDidYouHearForUs]"
+          },
+          {
+            "name": "mediaStorageName",
+            "type": "Microsoft.Storage.StorageAccountSelector",
+            "label": "Media Service Storage Account",
+            "toolTip": "Unique name for the Media Storage Account.",
+            "defaultValue": {
+              "name": "",
+              "type": "Standard_LRS"
+            },
+            "constraints": {
+              "allowedTypes": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_RAGRS"
+              ]
+            },
+            "options": {
+              "hideExisting": false
+            },
+            "visible": true
+          }
+
+
+        ]
+      },
+      {
+        "name": "vidizmoApplicationConfig",
+        "label": "VIDIZMO Application settings",
+        "subLabel": {
+          "preValidation": "Configure VIDIZMO Application settings",
+          "postValidation": "Done"
+        },
+        "bladeTitle": "VIDIZMO Application settings",
+        "elements": [
+          {
+            "name": "vidizmoLMSPackage",
+            "type": "Microsoft.Common.DropDown",
+            "label": "Select Vidizmo License",
+            "defaultValue": "EnterpriseTube Standard - 1 Portals - 100 Users",
+            "toolTip": "Select Vidizmo Application License for your deployment.",
+            "constraints": {
+              "required": true,
+              "allowedValues": [
+                {
+                  "label": "EnterpriseTube Standard - 1 Portals - 100 Users",
+                  "value": "vidizmo-enterprise-standard-100"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 1 Portals - 250 Users",
+                  "value": "vidizmo-enterprise-standard-250"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 1 Portals - 500 Users",
+                  "value": "vidizmo-enterprise-standard-500"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 1 Portals - 750 Users",
+                  "value": "vidizmo-enterprise-standard-750"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 4 Portals - 1K Users",
+                  "value": "vidizmo-enterprise-standard-1k"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 4 Portals - 2.5K Users",
+                  "value": "vidizmo-enterprise-standard-2.5k"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 4 Portals - 5K Users",
+                  "value": "vidizmo-enterprise-standard-5k"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 4 Portals - 10K Users",
+                  "value": "vidizmo-enterprise-standard-10k"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 4 Portals - 25K Users",
+                  "value": "vidizmo-enterprise-standard-25k"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 4 Portals - 50K Users",
+                  "value": "vidizmo-enterprise-standard-50k"
+                },
+                {
+                  "label": "EnterpriseTube Standard - 4 Portals - 100K Users",
+                  "value": "vidizmo-enterprise-standard-100k"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 1 Portals - 100 Users",
+                  "value": "vidizmo-enterprise-premium-100"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 1 Portals - 250 Users",
+                  "value": "vidizmo-enterprise-premium-250"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 1 Portals - 500 Users",
+                  "value": "vidizmo-enterprise-premium-500"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 1 Portals - 750 Users",
+                  "value": "vidizmo-enterprise-premium-750"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 4 Portals - 1K Users",
+                  "value": "vidizmo-enterprise-premium-1k"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 4 Portals - 2.5K Users",
+                  "value": "vidizmo-enterprise-premium-2.5k"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 4 Portals - 5K Users",
+                  "value": "vidizmo-enterprise-premium-5k"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 4 Portals - 10K Users",
+                  "value": "vidizmo-enterprise-premium-10k"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 4 Portals - 25K Users",
+                  "value": "vidizmo-enterprise-premium-25k"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 4 Portals - 50K Users",
+                  "value": "vidizmo-enterprise-premium-50k"
+                },
+                {
+                  "label": "EnterpriseTube Premium - 4 Portals - 100K Users",
+                  "value": "vidizmo-enterprise-premium-100k"
+                }
+              ]
+            }
+          },
+          {
+            "name": "emailAddress",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Your Email Address",
+            "toolTip": "Provide your email address",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,15})$",
+              "validationMessage": "Must be a valid email address."
+            }
+          },
+          {
+            "name": "vidizmoApplicationPassword",
+            "type": "Microsoft.Compute.CredentialsCombo",
+            "label": {
+              "password": "VIDIZMO Application User Password",
+              "confirmPassword": "Confirm password"
+            },
+            "toolTip": {
+              "password": "Provide Vidizmo Application User Password."
+            },
+            "constraints": {
+              "required": true
+            },
+            "options": {
+              "hideConfirmation": false
+            },
+            "osPlatform": "Windows"
+          },
+          {
+            "name": "firstName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Your First Name",
+            "toolTip": "Provide your first name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z\\s]{1,15}$",
+              "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-15 characters long."
+            }
+          },
+          {
+            "name": "lastName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Your Last Name",
+            "toolTip": "Provide your last name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z\\s]{1,15}$",
+              "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-15 characters long."
+            }
+          },
+          {
+            "name": "organizationName",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Organization Name",
+            "toolTip": "Provide your organization name.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z\\s]{1,100}$",
+              "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-100 characters long."
+            }
+          },
+          {
+            "name": "webSite",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Website URL",
+            "toolTip": "Provide your organization website URL.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$",
+              "validationMessage": "Only provide URLs like 'http://yourwebsite.com'."
+            }
+          },
+          {
+            "name": "phone",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Phone Number",
+            "toolTip": "Provide your phone number.",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[0-9]{1,15}$",
+              "validationMessage": "Only numbers are allowed, and the value must be 1-15 characters long."
+            }
+          },
+          {
+            "name": "iWouldLikeTo",
+            "type": "Microsoft.Common.DropDown",
+            "label": "I would like to",
+            "toolTip": "Select option listed in Dropdown",
+            "defaultValue": "VIDIZMO Sales Team to Contact me",
+            "constraints": {
+              "required": true,
+              "allowedValues": [
+                {
+                  "label": "VIDIZMO Sales Team to Contact me",
+                  "value": "Sales_Team_to_Contact_me"
+                },
+                {
+                  "label": "VIDIZMO Support Team to Contact me",
+                  "value": "Support_Team_to_Contact_me"
+                },
+                {
+                  "label": "VIDIZMO Sales & Support Team to Contact me",
+                  "value": "Sales_and_Support_Team_to_Contact_me"
+                }
+              ]
+            }
+          },
+          {
+            "name": "whereDidYouHearForUs",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Where did you hear about us?",
+            "toolTip": "Tell us, where did you hear about us?",
+            "defaultValue": "",
+            "constraints": {
+              "required": true,
+              "regex": "^[a-z0-9A-Z\\s]{1,100}$",
+              "validationMessage": "Only letters, numbers and spaces are allowed, and the value must be 1-100 characters long."
+            }
+          }
+        ]
       }
+    ],
+    "outputs": {
+      "adminUsername": "[basics('adminUsername')]",
+      "adminPassword": "[basics('adminPassword').password]",
+      "location": "[basics('location')]",
+      "resourceGroup": "[basics('resourcegroup')]",
+      "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
+      "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
+      "vNetName": "[steps('infrastructureConfig').vNetName.name]",
+      "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName.addressPrefixes]",
+      "subnetName": "[steps('infrastructureConfig').vNetName.subnets.subnet1.name]",
+      "subnetPrefix": "[steps('infrastructureConfig').vNetName.subnets.subnet1.addressPrefix]",
+      "vMName": "[steps('infrastructureConfig').vMName]",
+      "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
+      "vMDNSName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
+      "vMSize": "[steps('infrastructureConfig').vMSize]",
+      "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
+      "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
+      "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
+      "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
+      "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
+      "firstName": "[steps('vidizmoApplicationConfig').firstName]",
+      "lastName": "[steps('vidizmoApplicationConfig').lastName]",
+      "organizationName": "[steps('vidizmoApplicationConfig').organizationName]",
+      "webSite": "[steps('vidizmoApplicationConfig').webSite]",
+      "phone": "[steps('vidizmoApplicationConfig').phone]",
+      "iWouldLikeTo": "[steps('vidizmoApplicationConfig').iWouldLikeTo]",
+      "whereDidYouHearForUs": "[steps('vidizmoApplicationConfig').whereDidYouHearForUs]"
     }
+  }
 }
