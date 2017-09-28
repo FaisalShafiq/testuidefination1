@@ -108,6 +108,10 @@
             "toolTip": {
               "domainNameLabel": "DNS label for the VIDIZMO Server's public IP address, which hosts the VIDIZMO application."
             },
+            "defaultValue": {
+                "publicIpAddressName": "[concat(steps('infrastructureConfig').vMName), '-ip']",
+                "domainNameLabel": "[concat(steps('infrastructureConfig').vMName), string(rand(0, 100))]"
+            },    
             "options": {
               "hideNone": true,
               "hideDomainNameLabel": false
