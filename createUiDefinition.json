@@ -410,7 +410,7 @@
               "defaultValue": "",
               "constraints": {
                 "required": true,
-                "regex": "^(http|https):\\/\\/[^ ]+$",
+                "regex": "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$",
                 "validationMessage": "Only provide URLs like 'http://yourwebsite.com'."
               }
             },
@@ -453,8 +453,8 @@
             {
               "name": "whereDidYouHearForUs",
               "type": "Microsoft.Common.TextBox",
-              "label": "Where did you hear for us?",
-              "toolTip": "Tell us, where did you hear for us?",
+              "label": "Where did you hear about us?",
+              "toolTip": "Tell us, where did you hear about us?",
               "defaultValue": "",
               "constraints": {
                 "required": true,
