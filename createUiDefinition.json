@@ -50,7 +50,7 @@
               }
             },
             {
-                  "name": "vNetName1",
+                  "name": "vNetName",
                   "type": "Microsoft.Network.VirtualNetworkCombo",
                   "label": {
                     "virtualNetwork": "Virtual Network",
@@ -411,6 +411,7 @@
               "type": "Microsoft.Common.DropDown",
               "label": "I would like to",
               "toolTip": "Select option listed in Dropdown",
+              "defaultValue": "VIDIZMO Sales Team to Contact me",
               "constraints": {
                 "required": true,
                 "allowedValues": [
@@ -451,10 +452,10 @@
         "resourceGroup": "[basics('resourcegroup')]",
         "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
         "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
-        "vNetName": "[steps('infrastructureConfig').vNetName1.name]",
-        "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName1.addressPrefixes]",
-        "subnetName": "[steps('infrastructureConfig').vNetName1.subnets.subnet1.name]",
-        "subnetPrefix": "[steps('infrastructureConfig').vNetName1.subnets.subnet1.addressPrefix]",
+        "vNetName": "[steps('infrastructureConfig').vNetName.name]",
+        "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName.addressPrefixes]",
+        "subnetName": "[steps('infrastructureConfig').vNetName.subnets.subnet1.name]",
+        "subnetPrefix": "[steps('infrastructureConfig').vNetName.subnets.subnet1.addressPrefix]",
         "vMName": "[steps('infrastructureConfig').vMName]",
         "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
         "vMDNSName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
