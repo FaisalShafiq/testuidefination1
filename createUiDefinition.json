@@ -107,6 +107,26 @@
               }
             },
             {
+            "name": "vMPublicIP",
+            "type": "Microsoft.Network.PublicIpAddressCombo",
+            "label": {
+              "publicIpAddress": "Public IP address",
+              "domainNameLabel": "DNS label"
+            },
+            "toolTip": {
+              "domainNameLabel": "DNS label for the VIDIZMO Server's public IP address, which hosts the VIDIZMO application."
+            },
+            "options": {
+              "hideNone": true,
+              "hideDomainNameLabel": false
+            },
+            "constraints": {
+              "required": {
+                 "domainNameLabel": true
+              }
+            }
+          },
+            {
               "name": "vMSize",
               "type": "Microsoft.Compute.SizeSelector",
               "label": "Virtual Machine Size",
@@ -220,54 +240,98 @@
               "name": "vidizmoLMSPackage",
               "type": "Microsoft.Common.DropDown",
               "label": "Select Vidizmo License",
-              "defaultValue": "Virtual Academy - 1 Portals - 100 Users",
+              "defaultValue": "EnterpriseTube Standard - 1 Portals - 100 Users",
               "toolTip": "Select Vidizmo Application License for your deployment.",
               "constraints": {
                 "required": true,
                 "allowedValues": [
                   {
-                    "label": "Virtual Academy - 1 Portals - 100 Users",
-                    "value": "vidizmo-virtual-academy-100"
+                    "label": "EnterpriseTube Standard - 1 Portals - 100 Users",
+                    "value": "vidizmo-enterprise-standard-100"
                   },
                   {
-                    "label": "Virtual Academy - 1 Portals - 250 Users",
-                    "value": "vidizmo-virtual-academy-250"
+                    "label": "EnterpriseTube Standard - 1 Portals - 250 Users",
+                    "value": "vidizmo-enterprise-standard-250"
                   },
                   {
-                    "label": "Virtual Academy - 1 Portals - 500 Users",
-                    "value": "vidizmo-virtual-academy-500"
+                    "label": "EnterpriseTube Standard - 1 Portals - 500 Users",
+                    "value": "vidizmo-enterprise-standard-500"
                   },
                   {
-                    "label": "Virtual Academy - 1 Portals - 750 Users",
-                    "value": "vidizmo-virtual-academy-750"
+                    "label": "EnterpriseTube Standard - 1 Portals - 750 Users",
+                    "value": "vidizmo-enterprise-standard-750"
                   },
                   {
-                    "label": "Virtual Academy - 4 Portals - 1K Users",
-                    "value": "vidizmo-virtual-academy-1k"
+                    "label": "EnterpriseTube Standard - 4 Portals - 1K Users",
+                    "value": "vidizmo-enterprise-standard-1k"
                   },
                   {
-                    "label": "Virtual Academy - 4 Portals - 2.5K Users",
-                    "value": "vidizmo-virtual-academy-2.5k"
+                    "label": "EnterpriseTube Standard - 4 Portals - 2.5K Users",
+                    "value": "vidizmo-enterprise-standard-2.5k"
                   },
                   {
-                    "label": "Virtual Academy - 4 Portals - 5K Users",
-                    "value": "vidizmo-virtual-academy-5k"
+                    "label": "EnterpriseTube Standard - 4 Portals - 5K Users",
+                    "value": "vidizmo-enterprise-standard-5k"
                   },
                   {
-                    "label": "Virtual Academy - 4 Portals - 10K Users",
-                    "value": "vidizmo-virtual-academy-10k"
+                    "label": "EnterpriseTube Standard - 4 Portals - 10K Users",
+                    "value": "vidizmo-enterprise-standard-10k"
                   },
                   {
-                    "label": "Virtual Academy - 4 Portals - 25K Users",
-                    "value": "vidizmo-virtual-academy-25k"
+                    "label": "EnterpriseTube Standard - 4 Portals - 25K Users",
+                    "value": "vidizmo-enterprise-standard-25k"
                   },
                   {
-                    "label": "Virtual Academy - 4 Portals - 50K Users",
-                    "value": "vidizmo-virtual-academy-50k"
+                    "label": "EnterpriseTube Standard - 4 Portals - 50K Users",
+                    "value": "vidizmo-enterprise-standard-50k"
                   },
                   {
-                    "label": "Virtual Academy - 4 Portals - 100K Users",
-                    "value": "vidizmo-virtual-academy-100k"
+                    "label": "EnterpriseTube Standard - 4 Portals - 100K Users",
+                    "value": "vidizmo-enterprise-standard-100k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 100 Users",
+                    "value": "vidizmo-enterprise-premium-100"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 250 Users",
+                    "value": "vidizmo-enterprise-premium-250"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 500 Users",
+                    "value": "vidizmo-enterprise-premium-500"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 1 Portals - 750 Users",
+                    "value": "vidizmo-enterprise-premium-750"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 1K Users",
+                    "value": "vidizmo-enterprise-premium-1k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 2.5K Users",
+                    "value": "vidizmo-enterprise-premium-2.5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 5K Users",
+                    "value": "vidizmo-enterprise-premium-5k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 10K Users",
+                    "value": "vidizmo-enterprise-premium-10k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 25K Users",
+                    "value": "vidizmo-enterprise-premium-25k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 50K Users",
+                    "value": "vidizmo-enterprise-premium-50k"
+                  },
+                  {
+                    "label": "EnterpriseTube Premium - 4 Portals - 100K Users",
+                    "value": "vidizmo-enterprise-premium-100k"
                   }
                 ]
               }
@@ -285,18 +349,22 @@
               }
             },
             {
-              "name": "vidizmoApplicationPassword",
-              "type": "Microsoft.Compute.PasswordBox",
-              "label": {
-                "password": "VIDIZMO Application User Password",
-                "confirmPassword": "Confirm password"
-              },
-              "toolTip": {
-                "password": "Provide Vidizmo Application User Password."
-              },
+                "name": "vidizmoApplicationPassword",
+                "type": "Microsoft.Compute.CredentialsCombo",
+                "label": {
+                  "password": "VIDIZMO Application User Password",
+                  "confirmPassword": "Confirm password"
+                },
+                "toolTip": {
+                  "password": "Provide Vidizmo Application User Password."
+                },
               "constraints": {
                 "required": true
-              }
+              },
+                "options": {
+                  "hideConfirmation": true
+                },
+                "osPlatform": "Windows"
             },
             {
               "name": "firstName",
@@ -411,7 +479,7 @@
         "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
         "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
         "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
-        "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword]",
+        "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
         "firstName": "[steps('vidizmoApplicationConfig').firstName]",
         "lastName": "[steps('vidizmoApplicationConfig').lastName]",
         "organizationName": "[steps('vidizmoApplicationConfig').organizationName]",
