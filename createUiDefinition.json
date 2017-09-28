@@ -53,7 +53,7 @@
                   "name": "vNetName1",
                   "type": "Microsoft.Network.VirtualNetworkCombo",
                   "label": {
-                    "virtualNetwork": "Virtual network",
+                    "virtualNetwork": "Virtual Network",
                     "subnets": "Subnets"
                   },
                   "toolTip": {
@@ -72,7 +72,7 @@
                   },
                   "subnets": {
                     "subnet1": {
-                      "label": "First subnet",
+                      "label": "Subnet Name",
                       "defaultValue": {
                         "name": "subnet-1",
                         "addressPrefixSize": "/24"
@@ -506,11 +506,13 @@
         "adminPassword": "[basics('adminPassword').password]",
         "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
         "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
-        "vNetName": "[steps('infrastructureConfig').vNetName]",
-        "vNetAddressPrefix": "[steps('infrastructureConfig').vNetAddressPrefix]",
-        "subnetName": "[steps('infrastructureConfig').subnetName]",
-        "subnetPrefix": "[steps('infrastructureConfig').subnetPrefix]",
+        "vNetName": "[steps('infrastructureConfig').vNetName1.name]",
+        "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName1.addressPrefixes]",
+        "subnetName": "[steps('infrastructureConfig').vNetName1.subnet1.name]",
+        "subnetPrefix": "[steps('infrastructureConfig').vNetName1.subnet1.addressPrefix]",
         "vMName": "[steps('infrastructureConfig').vMName]",
+        "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
+        "vMDNSName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
         "vMSize": "[steps('infrastructureConfig').vMSize]",
         "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
         "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
