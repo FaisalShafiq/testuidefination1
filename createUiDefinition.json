@@ -86,51 +86,7 @@
                   },
                   "visible": true
                 },
-              {
-              "name": "vNetName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Virtual Network Name",
-              "toolTip": "Name of the virtual network to be created",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,15}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-10 characters long."
-              }
-            },
-            {
-              "name": "vNetAddressPrefix",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Virtual Network Name Address Prefix",
-              "toolTip": "Provide address prefix for Virtual Network, like '10.0.0.0/16'.",
-              "defaultValue": "10.0.0.0/16",
-              "constraints": {
-                "required": true
-              }
-
-            },
-            {
-              "name": "subnetName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Subnet Name",
-              "toolTip": "Provide Subnet name where VIDIZMO VM will create.",
-              "defaultValue": "",
-              "constraints": {
-                "required": true,
-                "regex": "^[a-z0-9A-Z]{1,15}$",
-                "validationMessage": "Only letters and numbers are allowed, and the value must be 1-15 characters long."
-              }
-            },
-            {
-              "name": "subnetPrefix",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Subnet Prefix",
-              "toolTip": "Provide Network Subnet name where VIDIZMO VM will create, like '10.0.0.0/24'.",
-              "defaultValue": "10.0.0.0/24",
-              "constraints": {
-                "required": true
-              }
-            },
+             
             {
               "name": "vMName",
               "type": "Microsoft.Common.TextBox",
@@ -399,7 +355,7 @@
                 "required": true
               },
                 "options": {
-                  "hideConfirmation": true
+                  "hideConfirmation": false
                 },
                 "osPlatform": "Windows"
             },
@@ -504,6 +460,8 @@
       "outputs": {
         "adminUsername": "[basics('adminUsername')]",
         "adminPassword": "[basics('adminPassword').password]",
+        "location": "[basics('location')]",
+        "resourceGroup": "[basics('resourcegroup')]",
         "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
         "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
         "vNetName": "[steps('infrastructureConfig').vNetName1.name]",
