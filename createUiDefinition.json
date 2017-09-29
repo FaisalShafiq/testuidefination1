@@ -474,7 +474,7 @@
       "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
       "vNetName": "[steps('infrastructureConfig').vNetName.name]",
-      "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName.addressPrefixes]",
+      "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName.addressPrefix]",
       "subnetName": "[steps('infrastructureConfig').vNetName.subnets.subnet1.name]",
       "subnetPrefix": "[steps('infrastructureConfig').vNetName.subnets.subnet1.addressPrefix]",
       "vMName": "[steps('infrastructureConfig').vMName]",
