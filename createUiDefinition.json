@@ -42,6 +42,9 @@
               "name": "",
               "type": "Premium_LRS"
             },
+            "options": {
+              "hideExisting": true
+            },
             "constraints": {
               "allowedTypes": [
                 "Standard_LRS",
@@ -111,7 +114,8 @@
             },
             "options": {
               "hideNone": true,
-              "hideDomainNameLabel": false
+              "hideDomainNameLabel": false,
+              "hideExisting": true
             },
             "constraints": {
               "required": {
@@ -220,7 +224,7 @@
               ]
             },
             "options": {
-              "hideExisting": false
+              "hideExisting": true
             },
             "visible": true
           }
@@ -469,14 +473,15 @@
     "outputs": {
       "adminUsername": "[basics('adminUsername')]",
       "adminPassword": "[basics('adminPassword').password]",
-      "location": "[basics('location')]",
-      "resourceGroup": "[basics('resourcegroup')]",
+      "location": "[location()]",
       "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
       "vNetName": "[steps('infrastructureConfig').vNetName.name]",
       "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName.addressPrefix]",
       "subnetName": "[steps('infrastructureConfig').vNetName.subnets.subnet1.name]",
       "subnetPrefix": "[steps('infrastructureConfig').vNetName.subnets.subnet1.addressPrefix]",
+      "vNetNewOrExisting": "[steps('infrastructureConfig').vNetName.newOrExisting]",
+      "vNetRG": "[steps('infrastructureConfig').vNetName.resourceGroup]",
       "vMName": "[steps('infrastructureConfig').vMName]",
       "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
       "vMDNSName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
