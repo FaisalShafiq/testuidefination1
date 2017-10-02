@@ -43,7 +43,7 @@
               "type": "Premium_LRS"
             },
             "options": {
-              "hideExisting": true
+              "hideExisting": false
             },
             "constraints": {
               "allowedTypes": [
@@ -115,7 +115,7 @@
             "options": {
               "hideNone": true,
               "hideDomainNameLabel": false,
-              "hideExisting": true
+              "hideExisting": false
             },
             "constraints": {
               "required": {
@@ -224,7 +224,7 @@
               ]
             },
             "options": {
-              "hideExisting": true
+              "hideExisting": false
             },
             "visible": true
           }
@@ -476,6 +476,8 @@
       "location": "[location()]",
       "storageAccountName": "[steps('infrastructureConfig').storageAccount.name]",
       "storageAccountType": "[steps('infrastructureConfig').storageAccount.type]",
+      "storageAccountNewOrExists": "[steps('infrastructureConfig').storageAccount.newOrExisting]",
+      "storageAccountRG": "[steps('infrastructureConfig').storageAccount.resourceGroup]",
       "vNetName": "[steps('infrastructureConfig').vNetName.name]",
       "vNetAddressPrefix": "[steps('infrastructureConfig').vNetName.addressPrefix]",
       "subnetName": "[steps('infrastructureConfig').vNetName.subnets.subnet1.name]",
@@ -485,9 +487,13 @@
       "vMName": "[steps('infrastructureConfig').vMName]",
       "vMPublicIPName": "[steps('infrastructureConfig').vMPublicIP.name]",
       "vMDNSName": "[steps('infrastructureConfig').vMPublicIP.domainNameLabel]",
+      "vMPublicIPNewOrExists": "[steps('infrastructureConfig').vMPublicIP.newOrExistingOrNone]",
+      "vMPublicIPRG": "[steps('infrastructureConfig').vMPublicIP.resourceGroup]",
       "vMSize": "[steps('infrastructureConfig').vMSize]",
       "mediaServiceName": "[steps('infrastructureConfig').mediaServiceName]",
       "mediaStorageName": "[steps('infrastructureConfig').mediaStorageName.name]",
+      "mediaStorageNewOrExists": "[steps('infrastructureConfig').mediaStorageName.newOrExisting]",
+      "mediaStorageAccountRG": "[steps('infrastructureConfig').mediaStorageName.resourceGroup]",
       "vidizmoLMSPackage": "[steps('vidizmoApplicationConfig').vidizmoLMSPackage]",
       "emailAddress": "[steps('vidizmoApplicationConfig').emailAddress]",
       "vidizmoApplicationPassword": "[steps('vidizmoApplicationConfig').vidizmoApplicationPassword.password]",
